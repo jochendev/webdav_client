@@ -54,19 +54,17 @@ DateTime? str2LocalTime(String? str) {
 }
 
 // create response error
-DioError newResponseError(Response? resp) {
+DioError newResponseError(Response resp) {
   return DioError(
-      request: resp?.request,
+      requestOptions: resp.requestOptions,
       response: resp,
       type: DioErrorType.response,
-      error: resp?.statusMessage);
+      error: resp.statusMessage);
 }
 
 // create xml error
-DioError newXmlError(dynamic err) {
-  return DioError(
-      type: DioErrorType.other,
-      error: err);
+Error newXmlError(dynamic err) {
+  return ArgumentError(err);
 }
 
 // 16进制字符串随机数
